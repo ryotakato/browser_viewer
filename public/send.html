@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WebRTC - Sender</title>
+    <script src="https://cdn.socket.io/4.7.4/socket.io.min.js" integrity="sha384-Gr6Lu2Ajx28mzwyVR8CFkULdCU7kMlZ9UthllibdOSo6qAiN+yXNHqtgdTvFXMT4" crossorigin="anonymous"></script>
+    <style>
+    </style>
+  </head>
+  <body>
+    <!-- 接続を開始するためのボタン -->
+    <button id="button_broadcast">broadcast</button>
+    <div>
+      <video id="video_el" controls autoplay playsinline muted="muted" ></video>
+    </div>
+    <script src="./send.js"></script>
+  </body>
+</html>
