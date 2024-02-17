@@ -12,7 +12,6 @@
     socket.emit('join', { roomId: roomId})
   })
 
-  //const MEDIA_CONFIG = { video: true, audio: true }
   const video = document.getElementById('video_el')
 
   const pcConfig = {
@@ -25,13 +24,22 @@
 
   async function setupDisplayMedia() {
     try {
-      // 音声も送るためにstreamを組み合わせる
-      //const stream = await navigator.mediaDevices.getDisplayMedia(MEDIA_CONFIG)
-      const displayStream = await navigator.mediaDevices.getDisplayMedia({video: true})
-      const [displayVideoTrack] = displayStream.getVideoTracks()
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true, video: true })
-      const [userAudioTrack] = stream.getAudioTracks()
-      const newStream = new MediaStream([displayVideoTrack, userAudioTrack])
+      const media_config = {
+          video: {
+              frameRate: {ideal: 60}
+              // フレームレートのために解像度を落とす
+              //width: {ideal:1024},
+              //height: {ideal:576},
+              width: {ideal:896},
+              height: {ideal:504},
+          },
+          audio: true
+      }
+      const stream = await navigator.mediaDevices.getDisplayMedia(media_config)
+      const [displayVideoTrack] = stream.getVideoTracks()
+      const [displayAudioTrack] = stream.getAudioTracks()
+      // 音声も送るためにstreamを組み合わせる あまり意味ないかも。そのままstreamを送っても良さそう
+      const newStream = new MediaStream([displayVideoTrack, displayAudioTrack])
       return newStream
     } catch (err) {
       console.log('An error occured! ' + err)

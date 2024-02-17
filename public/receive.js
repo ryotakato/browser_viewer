@@ -31,8 +31,10 @@
     // sendから受け取ったstreamをvideoタグに設定
     receivePeer.addEventListener('track', (e) => {
       if (video && video.srcObject !== e.streams[0]) {
+        console.log('received remote stream')
+        //console.log('received remote stream length : ', e.streams.length)
         video.srcObject = e.streams[0]
-        console.log('received remote stream', e.streams[0])
+        //console.log('received remote stream', e.streams[0])
       }
     })
 
