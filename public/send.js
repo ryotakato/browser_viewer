@@ -26,7 +26,7 @@
     try {
       const media_config = {
           video: {
-              frameRate: {ideal: 60}
+              frameRate: {ideal: 60},
               // フレームレートのために解像度を落とす
               //width: {ideal:1024},
               //height: {ideal:576},
